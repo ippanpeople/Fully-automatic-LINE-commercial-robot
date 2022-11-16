@@ -43,7 +43,16 @@ def handle_message(event):
 
 @handler.add(FollowEvent)
 def handle_follow(event):
-    print(event)
+    welcome_msg = """ニーハウー, ようこそ台湾楽鍋！
+僕はヘルパーのナベ君です！
+- 予約する場合には
+- 直接下のメニューから操作すればできますよう
+
+- お待ちしております〜"""
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=welcome_msg)
+    )
 
 @handler.add(UnfollowEvent)
 def handle_unfollow(event):

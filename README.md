@@ -1,4 +1,4 @@
-# Fully-automatic-LINE-commercial-robot
+# Fully automatic LINE commercial robot
 
 ## About this project
 

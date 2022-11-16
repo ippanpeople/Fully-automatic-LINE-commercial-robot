@@ -3,11 +3,11 @@
 ## About this project
 
 ## About line-bot-sdk
-### Webhook Event Objects
+- Webhook Event Objects
 <table rules="none" align="center">
 	<td>
         <table rules="none" align="center">
-- MessageEvent(訊息)
+MessageEvent(訊息)
             <tr>
                 <td>type</td>
             </tr>
@@ -30,7 +30,7 @@
     </td>
 	<td>
         <table rules="none" align="center">
-- FollowEvent(加入, 解除封鎖)
+FollowEvent(加入, 解除封鎖)
             <tr>
                 <td>type</td>
             </tr>
@@ -53,7 +53,7 @@
     </td>
 	<td>
         <table rules="none" align="center">
-- UnfollowEvent(封鎖)
+UnfollowEvent(封鎖)
             <tr>
                 <td>type</td>
             </tr>

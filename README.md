@@ -30,44 +30,48 @@
     </td>
 	<td>
         <table rules="none" align="center">
-- FollowEvent
+- FollowEvent(加入, 解除封鎖)
             <tr>
-                <td>OS</td>
-                <td>CentOS7</td>
+                <td>type</td>
             </tr>
             <tr>
-                <td>CPU</td>
-                <td>2 Core</td>
+                <td>mode</td>
             </tr>
             <tr>
-                <td>RAM</td>
-                <td>2 G</td>
+                <td>timestamp</td>
             </tr>
             <tr>
-                <td>Disk</td>
-                <td>10 G</td>
-            </tr>
+                <td>source:Source</td>
+            </tr>    
+            <tr>
+                <td>reply_token</td>
+            </tr>    
+            <tr>
+                <td>Ｘ</td>
+            </tr>    
         </table>
     </td>
 	<td>
         <table rules="none" align="center">
-- サーバ設定
+- UnfollowEvent(封鎖)
             <tr>
-                <td>Domain</td>
-                <td>devre.rinlink.jp</td>
+                <td>type</td>
             </tr>
             <tr>
-                <td>WebServer</td>
-                <td>apache</td>
-            </tr>            
-            <tr>
-                <td>node.js</td>
-                <td>16.17.1</td>
+                <td>mode</td>
             </tr>
             <tr>
-                <td>React</td>
-                <td>17.0.2</td>
-            </tr>  
+                <td>timestamp</td>
+            </tr>
+            <tr>
+                <td>source:Source</td>
+            </tr>    
+            <tr>
+                <td>Ｘ</td>
+            </tr>    
+            <tr>
+                <td>Ｘ</td>
+            </tr>    
         </table>
     </td>
 </table>

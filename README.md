@@ -86,7 +86,14 @@ docker build -t rakunabe .
 ```bash
 mkdir app.py
 ```
-3. run your project in the container 
+3. use line-bot-sdk supply code to build basic flask server
+- source : https://github.com/line/line-bot-sdk-python
+4. run your project in the container 
 ```bash
 docker run --name rakunabe -p 5002:5002 --restart=always -v /root/Fully-automatic-LINE-commercial-robot:/app -d rakunabe
+```
+5. check container normal executed or not
+```bash
+docker container ps | grep rakunabe
+docker logs rakunabe
 ```

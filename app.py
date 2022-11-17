@@ -37,9 +37,40 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+
+    # 將從使用者側接收到的訊息, 進行自定義並加入表情符號（
+    # lower() : 將字串主動變為小寫
+    message_text = str(event.message.text).lower()
+    
+    if message_text == "@site":
+        emoji = [
+            {
+                "index": 2,
+                "productId": "5ac21c4e031a6752fb806d5b",
+                "emojiId": "091"
+            },
+            {
+                "index": 3,
+                "productId": "5ac21c4e031a6752fb806d5b",
+                "emojiId": "082"
+            },
+            {
+                "index": 4,
+                "productId": "5ac21c4e031a6752fb806d5b",
+                "emojiId": "150"
+            },
+            {
+                "index": 37,
+                "productId": "5ac21184040ab15980c9b43a",
+                "emojiId": "225"
+            }
+        ]
+        text_message = TextSendMessage(text='''公式$$$はこちらです〜
+- https://rakunabe.jp
+- $お待ちしております〜''', emojis=emoji)
+        line_bot_api.reply_message(
+            event.reply_token,
+            text_message)
 
 @handler.add(FollowEvent)
 def handle_follow(event):
@@ -53,6 +84,7 @@ def handle_follow(event):
         event.reply_token,
         TextSendMessage(text=welcome_msg)
     )
+    
 
 @handler.add(UnfollowEvent)
 def handle_unfollow(event):

@@ -7,7 +7,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, StickerSendMessage, ImageSendMessage
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, StickerSendMessage, ImageSendMessage,  LocationSendMessage, ImagemapSendMessage
 )
 
 app = Flask(__name__)
@@ -72,7 +72,7 @@ def handle_message(event):
             package_id='8522',
             sticker_id='16581271'
         )
-        about_us_img = 'https://i.imgur.com/70A4WdI.jpg'
+        about_us_img = 'https://scontent-lax3-1.cdninstagram.com/v/t51.2885-15/296813604_577297440556390_2640681472271811157_n.jpg?stp=dst-jpg_e35&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=110&_nc_ohc=HJ5J6srFtecAX_Cm3ZV&edm=ALQROFkBAAAA&ccb=7-5&ig_cache_key=Mjg5NTc1ODI5MzY3OTkxNjM1OQ%3D%3D.2-ccb7-5&oh=00_AfCVXc9Qg4LF-KhIvjNTosYR1py7qhcFnj5hBFOt1iPgvw&oe=637AE86C&_nc_sid=30a2ef'
 
         image_message = ImageSendMessage(
             original_content_url=about_us_img,
@@ -81,6 +81,53 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             [text_message, sticker_message, image_message])
+    elif message_text == '@map':
+
+        location_message = LocationSendMessage(
+            title='台湾楽鍋',
+            address='2F, ３丁目-２-1 高津 中央区 大阪市 大阪府 542-0072',
+            latitude=34.6665307,
+            longitude=135.5082797
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            location_message)
+
+    # imagemap_message = ImagemapSendMessage(
+    #     base_url='https://i.imgur.com/fQDqArm.jpg',
+    #     alt_text='this is an imagemap',
+    #     base_size=BaseSize(height=1040, width=1040),
+    #     video=Video(
+    #         original_content_url='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
+    #         preview_image_url='https://via.placeholder.com/1040x585',
+    #         area=ImagemapArea(
+    #             x=0, y=0, width=1040, height=585
+    #         ),
+    #         external_link=ExternalLink(
+    #             link_uri='https://example.com/see_more.html',
+    #             label='See More',
+    #         ),
+    #     ),
+    #     actions=[
+    #         URIImagemapAction(
+    #             link_uri='https://google.com/',
+    #             area=ImagemapArea(
+    #                 x=0, y=0, width=520, height=1040
+    #             )
+    #         ),
+    #         MessageImagemapAction(
+    #             text='hello',
+    #             area=ImagemapArea(
+    #                 x=520, y=0, width=520, height=1040
+    #             )
+    #         )
+    #     ]
+    # )
+
+    # line_bot_api.reply_message(
+    #     event.reply_token,
+    #     imagemap_message)
 
 @handler.add(FollowEvent)
 def handle_follow(event):

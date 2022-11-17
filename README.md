@@ -78,12 +78,12 @@ UnfollowEvent(封鎖)
 
 ## About line messageing-api[https://github.com/line/line-bot-sdk-python]
 - types of messages:
-    - text
-    - sticker
-    - image
+    - text (used)
+    - sticker (used)
+    - image (used)
     - video 
     - audio
-    - location
+    - location (used)
     - imagemap
     - template
     - flex

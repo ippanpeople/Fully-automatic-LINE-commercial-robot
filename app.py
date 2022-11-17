@@ -68,9 +68,6 @@ def handle_message(event):
         text_message = TextSendMessage(text='''公式$$$はこちらです〜
 - https://rakunabe.jp
 - $お待ちしております〜''', emojis=emoji)
-        line_bot_api.reply_message(
-            event.reply_token,
-            text_message)
         sticker_message = StickerSendMessage(
             package_id='8522',
             sticker_id='16581271'
@@ -81,6 +78,9 @@ def handle_message(event):
             original_content_url=about_us_img,
             preview_image_url=about_us_img
         )
+        line_bot_api.reply_message(
+            event.reply_token,
+            [text_message, sticker_message, image_message])
 
 @handler.add(FollowEvent)
 def handle_follow(event):

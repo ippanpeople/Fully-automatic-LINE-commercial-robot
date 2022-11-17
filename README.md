@@ -2,7 +2,7 @@
 
 ## About this project
 
-## About line-bot-sdk
+## About line-bot-sdk[https://github.com/line/line-bot-sdk-python]
 - Webhook Event Objects
 <table rules="none" align="center">
 	<td>
@@ -76,6 +76,17 @@ UnfollowEvent(封鎖)
     </td>
 </table>
 
+## About line messageing-api[https://github.com/line/line-bot-sdk-python]
+- types of messages:
+    - text
+    - sticker
+    - image
+    - video 
+    - audio
+    - location
+    - imagemap
+    - template
+    - flex
 
 ## How to use
 1. use Dockerfile build env image

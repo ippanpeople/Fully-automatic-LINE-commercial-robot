@@ -9,6 +9,8 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, StickerSendMessage, ImageSendMessage,  LocationSendMessage, ImagemapSendMessage
 )
+from event.basic import about_us_event
+
 
 app = Flask(__name__)
 
@@ -43,44 +45,7 @@ def handle_message(event):
     message_text = str(event.message.text).lower()
     
     if message_text == "@site":
-        emoji = [
-            {
-                "index": 2,
-                "productId": "5ac21c4e031a6752fb806d5b",
-                "emojiId": "091"
-            },
-            {
-                "index": 3,
-                "productId": "5ac21c4e031a6752fb806d5b",
-                "emojiId": "082"
-            },
-            {
-                "index": 4,
-                "productId": "5ac21c4e031a6752fb806d5b",
-                "emojiId": "150"
-            },
-            {
-                "index": 37,
-                "productId": "5ac21184040ab15980c9b43a",
-                "emojiId": "225"
-            }
-        ]
-        text_message = TextSendMessage(text='''公式$$$はこちらです〜
-- https://rakunabe.jp
-- $お待ちしております〜''', emojis=emoji)
-        sticker_message = StickerSendMessage(
-            package_id='8522',
-            sticker_id='16581271'
-        )
-        about_us_img = 'https://scontent-lax3-1.cdninstagram.com/v/t51.2885-15/296813604_577297440556390_2640681472271811157_n.jpg?stp=dst-jpg_e35&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=110&_nc_ohc=HJ5J6srFtecAX_Cm3ZV&edm=ALQROFkBAAAA&ccb=7-5&ig_cache_key=Mjg5NTc1ODI5MzY3OTkxNjM1OQ%3D%3D.2-ccb7-5&oh=00_AfCVXc9Qg4LF-KhIvjNTosYR1py7qhcFnj5hBFOt1iPgvw&oe=637AE86C&_nc_sid=30a2ef'
-
-        image_message = ImageSendMessage(
-            original_content_url=about_us_img,
-            preview_image_url=about_us_img
-        )
-        line_bot_api.reply_message(
-            event.reply_token,
-            [text_message, sticker_message, image_message])
+        about_us_event(event)
     elif message_text == '@map':
 
         location_message = LocationSendMessage(

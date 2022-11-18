@@ -87,7 +87,9 @@ UnfollowEvent(封鎖)
     - imagemap (<3)
     - template (<3)
     - flex (excellent)
-
+## Detail
+    - app.py : main program
+    - line_bot_api.py : related modules
 ## How to use
 1. use Dockerfile build env image
 ```bash

@@ -84,9 +84,9 @@ UnfollowEvent(封鎖)
     - video 
     - audio
     - location (used)
-    - imagemap
-    - template
-    - flex
+    - imagemap (<3)
+    - template (<3)
+    - flex (excellent)
 
 ## How to use
 1. use Dockerfile build env image

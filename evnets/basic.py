@@ -49,3 +49,16 @@ def about_us_event(event):
     line_bot_api.reply_message(
         event.reply_token,
         [text_message, sticker_message, image_message])
+
+def location_event(event):
+    location_message = LocationSendMessage(
+        title='台湾楽鍋',
+        address='2F, ３丁目-２-1 高津 中央区 大阪市 大阪府 542-0072',
+        latitude=34.6665307,
+        longitude=135.5082797
+    )
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        location_message)
+

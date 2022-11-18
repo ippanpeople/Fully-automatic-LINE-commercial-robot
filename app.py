@@ -9,7 +9,7 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, StickerSendMessage, ImageSendMessage,  LocationSendMessage, ImagemapSendMessage
 )
-from event.basic import about_us_event
+from event.basic import about_us_event, location_event
 
 
 app = Flask(__name__)
@@ -47,18 +47,7 @@ def handle_message(event):
     if message_text == "@site":
         about_us_event(event)
     elif message_text == '@map':
-
-        location_message = LocationSendMessage(
-            title='台湾楽鍋',
-            address='2F, ３丁目-２-1 高津 中央区 大阪市 大阪府 542-0072',
-            latitude=34.6665307,
-            longitude=135.5082797
-        )
-
-        line_bot_api.reply_message(
-            event.reply_token,
-            location_message)
-
+        location_event(event)
     # imagemap_message = ImagemapSendMessage(
     #     base_url='https://i.imgur.com/fQDqArm.jpg',
     #     alt_text='this is an imagemap',

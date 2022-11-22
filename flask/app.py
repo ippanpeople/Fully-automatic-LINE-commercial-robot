@@ -1,6 +1,6 @@
 from flask import Flask, request, abort
 
-from line_bot_api import *
+from flask.line_bot_api import *
 from events.basic import *
 
 app = Flask(__name__)

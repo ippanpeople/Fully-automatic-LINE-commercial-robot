@@ -17,7 +17,7 @@ services:
      - ./postgres-data:/var/lib/postgresql/data
     environment:
      POSTGRES_DB: db_name
-     POSTGRES_USER: postgres_n
-     POSTGRES_PASSWORD: postgres_p
+     POSTGRES_USER: root
+     POSTGRES_PASSWORD: root
     ports:
      - 5432:5432

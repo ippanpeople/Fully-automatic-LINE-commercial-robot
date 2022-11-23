@@ -4,6 +4,8 @@ services:
   flask:
     build: ./flask
     container_name: raku
+    volumes:
+      - ./flask:/app
     ports:
      - 5002:5002
     depends_on:

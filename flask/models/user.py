@@ -1,8 +1,10 @@
+import sys 
+sys.path.append("..") 
 from extensions import db
 import datetime
 
 class User(db.Model):
-    __table__ = 'user'
+    __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
 

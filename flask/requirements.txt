@@ -33,3 +33,4 @@ wheel==0.37.1
 WTForms==3.0.1
 yarl==1.8.1
 zipp==3.10.0
+Flask-Migrate==4.0.0

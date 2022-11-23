@@ -1,4 +1,6 @@
-from line_bot_api import *
+import sys 
+sys.path.append("..") 
+from api import *
 
 def about_us_event(event):
 
@@ -33,7 +35,7 @@ def about_us_event(event):
         package_id='8522',
         sticker_id='16581271'
     )
-    about_us_img = 'https://scontent-lax3-1.cdninstagram.com/v/t51.2885-15/296813604_577297440556390_2640681472271811157_n.jpg?stp=dst-jpg_e35&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=110&_nc_ohc=HJ5J6srFtecAX_Cm3ZV&edm=ALQROFkBAAAA&ccb=7-5&ig_cache_key=Mjg5NTc1ODI5MzY3OTkxNjM1OQ%3D%3D.2-ccb7-5&oh=00_AfCVXc9Qg4LF-KhIvjNTosYR1py7qhcFnj5hBFOt1iPgvw&oe=637AE86C&_nc_sid=30a2ef'
+    about_us_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsgBsMhixWW72YbydGkuyjoUIGFeXhfwCZOYoDqsotJcTXT893S9SKJvgjCsib0P90bPs&usqp=CAU'
 
     image_message = ImageSendMessage(
         original_content_url=about_us_img,

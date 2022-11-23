@@ -8,6 +8,7 @@ from models.user import User
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@10.0.1.201:5432/raku'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.app = app
 db.init_app(app)
 migrate.init_app(app, db)
@@ -38,8 +39,23 @@ def handle_message(event):
     # lower() : 將字串主動變為小寫
     message_text = str(event.message.text).lower()
     
+    profile = line_bot_api.get_profile(event.source.user_id)
+    # user = User(profile.user_id, profile.display_name, profile.picture_url)
+    # db.session(user)
+    # db.session.commit()
+
     if message_text == "@site":
         about_us_event(event)
+        # print(profile)
+        print(profile.display_name)
+        print(profile.user_id)
+        print(profile.picture_url)
+        user = User(profile.user_id, profile.display_name, profile.picture_url)
+        print(user)
+        db.session.add(user)
+        db.session.commit()
+
+
     elif message_text == '@map':
         location_event(event)
     # imagemap_message = ImagemapSendMessage(

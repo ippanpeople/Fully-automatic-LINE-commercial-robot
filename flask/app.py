@@ -3,8 +3,13 @@ from flask import Flask, request, abort
 from flask.line_bot_api import *
 from events.basic import *
 
+from extensions import db
+
 app = Flask(__name__)
- 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin@10.0.1.201:5432/raku'
+db.app = app
+db.init_app(app)
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value

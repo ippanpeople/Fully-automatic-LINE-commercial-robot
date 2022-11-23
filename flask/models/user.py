@@ -12,7 +12,9 @@ class User(db.Model):
 
     created_on = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, line_id, display_name, picture_url):
-        self.line_id = line_id
-        self.display_name = display_name
-        self.picture_url = picture_url 
+    # init function : use for defind object initialization setting
+    # when create User object ( given that new object ) -> line_id, display_name, picture_url
+    def __init__(self, line_id, display_name, picture_url): # self => User(object)
+        self.line_id = line_id  # self.line_id => User.line_id
+        self.display_name = display_name  # self.display_name => User.display_name
+        self.picture_url = picture_url  # self.picture_url => User.picture_url

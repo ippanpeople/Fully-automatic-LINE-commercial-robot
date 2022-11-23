@@ -39,22 +39,24 @@ def handle_message(event):
     # lower() : 將字串主動變為小寫
     message_text = str(event.message.text).lower()
     
-    profile = line_bot_api.get_profile(event.source.user_id)
-    # user = User(profile.user_id, profile.display_name, profile.picture_url)
-    # db.session(user)
-    # db.session.commit()
+    # Determine if the user exists in the database
+    user = User.query.filter(User.line_id == event.source.user_id).first()
 
-    if message_text == "@site":
-        about_us_event(event)
+    if not user :
+        profile = line_bot_api.get_profile(event.source.user_id)
         # print(profile)
-        print(profile.display_name)
-        print(profile.user_id)
-        print(profile.picture_url)
+        # print(profile.display_name)
+        # print(profile.user_id)
+        # print(profile.picture_url)
         user = User(profile.user_id, profile.display_name, profile.picture_url)
-        print(user)
         db.session.add(user)
         db.session.commit()
-
+    print(user.id)
+    print(user.line_id)
+    print(user.display_name)
+    
+    if message_text == "@site":
+        about_us_event(event)
 
     elif message_text == '@map':
         location_event(event)

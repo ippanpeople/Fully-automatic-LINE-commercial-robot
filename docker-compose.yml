@@ -1,15 +1,14 @@
 version: "3.7"
  
 services:
-
   flask:
     build: ./flask
     container_name: raku
-    restart: always
     ports:
      - 5002:5002
     depends_on:
      - db
+    # command: bash -c "cd /app && flask db init && flask db migrate && flask db upgrade"
   db:
     image: postgres
     container_name: rakuSQL

@@ -1,4 +1,5 @@
 from urllib.parse import parse_qsl
+import datetime
 import sys 
 sys.path.append("..") 
 from api import *
@@ -115,7 +116,7 @@ def service_event(event):
                             "type": "postback",
                             "data": f"action=select_date&service_id={service_id}",
                             "label": "個人鍋予約",
-                            "displayText": f"{service['title']}完了"
+                            "displayText": f"{service['title']}を予約したい"
                             },
                             "color": "#E22222"
                         },
@@ -123,7 +124,7 @@ def service_event(event):
                             "type": "button",
                             "action": {
                             "type": "uri",
-                            "label": "個人鍋について",
+                            "label": f"{service['title']}について",
                             "uri": service['post_url']
                             }
                         }
@@ -144,3 +145,61 @@ def service_event(event):
         event.reply_token,
         [flex_message]
     )
+
+def service_select_date_event(event):
+    
+    data = dict(parse_qsl(event.postback.data))
+
+    weekday_string = {
+        0: '月',
+        1: '火',
+        2: '水',
+        3: '木',
+        4: '金',
+        5: '土',
+        6: '日',
+    }
+
+    business_day = [1, 2, 3, 4, 5, 6]
+
+    quick_reply_buttons = []
+
+    today = datetime.datetime.today().date()
+
+    for x in range(1, 11):
+        day = today + datetime.timedelta(days=x)
+
+        if day.weekday() in business_day:
+            quick_reply_button = QuickReplyButton(
+                action=PostbackAction(label=f'{day} ({weekday_string[day.weekday()]})',
+                                      text=f'{day} ({weekday_string[day.weekday()]}) に予約したい',
+                                      data=f'action=select_time&service_id={data["service_id"]}&date={day}'))
+            quick_reply_buttons.append(quick_reply_button)
+
+    text_message = TextSendMessage(text='予約ご希望の日',
+                                   quick_reply=QuickReply(items=quick_reply_buttons))
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        [text_message])
+
+
+def service_select_time_event(event):
+
+    data = dict(parse_qsl(event.postback.data))
+
+    available_time = ['11:00', '14:00', '17:00', '20:00']
+
+    quick_reply_buttons = []
+
+    for time in available_time:
+        quick_reply_button = QuickReplyButton(action=PostbackAction(label=time,
+                                                                    text=f'{time}',
+                                                                    data=f'action=confirm&service_id={data["service_id"]}&date={data["date"]}&time={time}'))
+        quick_reply_buttons.append(quick_reply_button)
+
+    text_message = TextSendMessage(text='ご希望の時間帯',
+                                   quick_reply=QuickReply(items=quick_reply_buttons))
+    line_bot_api.reply_message(
+        event.reply_token,
+        [text_message])

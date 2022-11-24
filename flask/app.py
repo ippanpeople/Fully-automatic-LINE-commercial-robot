@@ -80,6 +80,19 @@ def handle_postback(event):
         print('category:', data.get('category'))
         print('service_id:', data.get('service_id'))
         service_event(event)
+    elif data.get('action') == 'select_date':
+        service_select_date_event(event)
+        print('action:', data.get('action'))
+        print('category:', data.get('category'))
+        print('service_id:', data.get('service_id'))
+        print('date:', data.get('date'))
+    elif data.get('action') == 'select_time':
+        service_select_time_event(event)
+        print('action:', data.get('action'))
+        print('category:', data.get('category'))
+        print('service_id:', data.get('service_id'))
+        print('date:', data.get('date'))
+        print('time:', data.get('time'))
 
 
 

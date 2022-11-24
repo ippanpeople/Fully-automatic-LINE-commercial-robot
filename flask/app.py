@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 from urllib.parse import parse_qsl
+
 from api import *
 
 from events.basic import *
@@ -69,43 +70,18 @@ def handle_message(event):
 def handle_postback(event):
 
     data = dict(parse_qsl(event.postback.data))
-    print(data)
-    print(data['action'])
-    print(data['itemid'])
-    # imagemap_message = ImagemapSendMessage(
-    #     base_url='https://i.imgur.com/fQDqArm.jpg',
-    #     alt_text='this is an imagemap',
-    #     base_size=BaseSize(height=1040, width=1040),
-    #     video=Video(
-    #         original_content_url='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-    #         preview_image_url='https://via.placeholder.com/1040x585',
-    #         area=ImagemapArea(
-    #             x=0, y=0, width=1040, height=585
-    #         ),
-    #         external_link=ExternalLink(
-    #             link_uri='https://example.com/see_more.html',
-    #             label='See More',
-    #         ),
-    #     ),
-    #     actions=[
-    #         URIImagemapAction(
-    #             link_uri='https://google.com/',
-    #             area=ImagemapArea(
-    #                 x=0, y=0, width=520, height=1040
-    #             )
-    #         ),
-    #         MessageImagemapAction(
-    #             text='hello',
-    #             area=ImagemapArea(
-    #                 x=520, y=0, width=520, height=1040
-    #             )
-    #         )
-    #     ]
-    # )
+    print('action:', data.get('action'))
+    print('category:', data.get('category'))
+    print('service_id:', data.get('service_id'))
 
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     imagemap_message)
+
+    if data.get('action') == 'service':
+        print('action:', data.get('action'))
+        print('category:', data.get('category'))
+        print('service_id:', data.get('service_id'))
+        service_event(event)
+
+
 
 @handler.add(FollowEvent)
 def handle_follow(event):

@@ -1,7 +1,9 @@
 from flask import Flask, request, abort
-
+from urllib.parse import parse_qsl
 from api import *
+
 from events.basic import *
+from events.service import *
 
 from extensions import db, migrate
 from models.user import User
@@ -51,15 +53,25 @@ def handle_message(event):
         user = User(profile.user_id, profile.display_name, profile.picture_url)
         db.session.add(user)
         db.session.commit()
-    print(user.id)
-    print(user.line_id)
-    print(user.display_name)
+        
+    # print(user.id)
+    # print(user.line_id)
+    # print(user.display_name)
     
     if message_text == "@site":
         about_us_event(event)
-
     elif message_text == '@map':
         location_event(event)
+    elif message_text == '@reserve':
+        service_category_event(event)
+
+@handler.add(PostbackEvent)
+def handle_postback(event):
+
+    data = dict(parse_qsl(event.postback.data))
+    print(data)
+    print(data['action'])
+    print(data['itemid'])
     # imagemap_message = ImagemapSendMessage(
     #     base_url='https://i.imgur.com/fQDqArm.jpg',
     #     alt_text='this is an imagemap',
